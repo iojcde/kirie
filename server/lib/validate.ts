@@ -24,17 +24,16 @@ export const validateParams = (
   try {
     hrefParsed = new URL(url)
     href = hrefParsed.toString()
+    
     if (href.startsWith(`/`)) {
       href = `https://jcde.xyz` + href
+    } else if (![`http:`, `https:`].includes(hrefParsed.protocol)) {
+        return { errorMessage: `"url" parameter is invalid` }
     }
   } catch (_error) {
     return { errorMessage: `"url" parameter is invalid` }
   }
-
-  if (![`http:`, `https:`].includes(hrefParsed.protocol)) {
-    return { errorMessage: `"url" parameter is invalid` }
-  }
-
+    
   if (Array.isArray(w)) {
     return { errorMessage: `"w" parameter (width) cannot be an array` }
   }
