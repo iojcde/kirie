@@ -25,7 +25,7 @@ export const validateParams = (
     hrefParsed = new URL(url)
     href = hrefParsed.toString()
     if (href.startsWith(`/`)) {
-      href = `https://vignetteapp.org` + href
+      href = `https://jcde.xyz` + href
     }
   } catch (_error) {
     return { errorMessage: `"url" parameter is invalid` }
