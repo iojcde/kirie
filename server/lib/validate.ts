@@ -25,11 +25,14 @@ export const validateParams = (
     hrefParsed = new URL(url)
     href = hrefParsed.toString()
   } catch (_error) {
-    if (href.startsWith(`/`)) {
-      href = `https://jcde.xyz` + href
+    if (url.startsWith(`/`)) {
+      href = `https://jcde.xyz` + url
+      hrefParsed = new URL(href)
+    } else {
+      return { errorMessage: `"url" parameter is invalid` }
     }
-    return { errorMessage: `"url" parameter is invalid` }
   }
+
   if (![`http:`, `https:`].includes(hrefParsed.protocol)) {
     return { errorMessage: `"url" parameter is invalid` }
   }
